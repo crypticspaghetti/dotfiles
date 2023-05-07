@@ -34,6 +34,7 @@ if [[ "$(tty)" = "/dev/tty1" ]]; then
     pgrep i3 || exec startx "$XDG_CONFIG_HOME/X11/.xinitrc"
 fi
 
+# Vi mode
 bindkey -v
 export KEYTIMEOUT=1
 
@@ -42,6 +43,11 @@ autoload -Uz cursor_mode; cursor_mode
 autoload -Uz edit-command-line
 zle -N edit-command-line
 bindkey -M vicmd v edit-command-line
+
+# Clear lines
+bindkey -r '^l'
+bindkey -r '^g'
+bindkey -s '^g' 'clear\n'
 
 source $DOTFILES/zsh/scripts.sh
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
